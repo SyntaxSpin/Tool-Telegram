@@ -12,14 +12,12 @@ import org.koin.dsl.module
 const val APP_PREFERENCES = "app_preferences"
 
 val appModule = module {
-    singleOf(::AppPreferencesRepository)
-    viewModelOf(::AppPreferencesViewModel)
+  singleOf(::AppPreferencesRepository)
+  viewModelOf(::AppPreferencesViewModel)
 }
 
 val appPreferencesModule = module {
-    single {
-        PreferenceDataStoreFactory.create {
-            androidContext().preferencesDataStoreFile(APP_PREFERENCES)
-        }
-    }
+  single {
+    PreferenceDataStoreFactory.create { androidContext().preferencesDataStoreFile(APP_PREFERENCES) }
+  }
 }

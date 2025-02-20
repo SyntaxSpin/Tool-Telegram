@@ -9,13 +9,13 @@ import org.koin.core.context.startKoin
 
 class ToolTelegramApplication : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
+  override fun onCreate() {
+    super.onCreate()
 
-        startKoin {
-            androidLogger()
-            androidContext(this@ToolTelegramApplication)
-            modules(appModule, appPreferencesModule)
-        }
+    startKoin {
+      androidLogger()
+      androidContext(this@ToolTelegramApplication)
+      modules(appModule, appPreferencesModule)
     }
+  }
 }

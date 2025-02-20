@@ -22,52 +22,49 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CardBox(
-    modifier: Modifier = Modifier,
-    cardTitle: String = "",
-    addToggle: Boolean = false,
-    isToggleChecked: Boolean = false,
-    isToggleEnabled: Boolean = true,
-    addPadding: Boolean = true,
-    cardColor: Color = MaterialTheme.colorScheme.inverseOnSurface,
-    onCheckedChange: ((Boolean) -> Unit) = {},
-    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(10.dp),
-    content: @Composable (ColumnScope) -> Unit,
+  modifier: Modifier = Modifier,
+  cardTitle: String = "",
+  addToggle: Boolean = false,
+  isToggleChecked: Boolean = false,
+  isToggleEnabled: Boolean = true,
+  addPadding: Boolean = true,
+  cardColor: Color = MaterialTheme.colorScheme.inverseOnSurface,
+  onCheckedChange: ((Boolean) -> Unit) = {},
+  roundedCornerShape: RoundedCornerShape = RoundedCornerShape(10.dp),
+  content: @Composable (ColumnScope) -> Unit,
 ) {
-    Box(
-        modifier =
-            if (addPadding) {
-                Modifier.clip(roundedCornerShape)
-                    .background(cardColor)
-                    .padding(all = 10.dp)
-                    .padding(end = 4.dp, start = 4.dp)
-                    .fillMaxWidth()
-            } else {
-                Modifier.clip(roundedCornerShape).background(cardColor).fillMaxWidth()
-            }
-    ) {
-        Column(modifier = modifier) {
-            if (cardTitle.isNotEmpty()) {
-                if (addToggle) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        CardTitle(modifier.weight(1F), cardTitle = cardTitle)
-                        Spacer(modifier = Modifier.padding(4.dp))
-                        Switch(
-                            checked = isToggleChecked,
-                            onCheckedChange = onCheckedChange,
-                            enabled = isToggleEnabled,
-                        )
-                    }
-                } else {
-                    CardTitle(
-                        cardTitle = cardTitle,
-                        modifier = Modifier.padding(top = 9.5.dp, bottom = 9.5.dp),
-                    )
-                }
-            }
-            content(this)
+  Box(
+    modifier =
+      if (addPadding) {
+        Modifier.clip(roundedCornerShape)
+          .background(cardColor)
+          .padding(all = 10.dp)
+          .padding(end = 4.dp, start = 4.dp)
+          .fillMaxWidth()
+      } else {
+        Modifier.clip(roundedCornerShape).background(cardColor).fillMaxWidth()
+      }
+  ) {
+    Column(modifier = modifier) {
+      if (cardTitle.isNotEmpty()) {
+        if (addToggle) {
+          Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            CardTitle(modifier.weight(1F), cardTitle = cardTitle)
+            Spacer(modifier = Modifier.padding(4.dp))
+            Switch(
+              checked = isToggleChecked,
+              onCheckedChange = onCheckedChange,
+              enabled = isToggleEnabled,
+            )
+          }
+        } else {
+          CardTitle(
+            cardTitle = cardTitle,
+            modifier = Modifier.padding(top = 9.5.dp, bottom = 9.5.dp),
+          )
         }
+      }
+      content(this)
     }
+  }
 }

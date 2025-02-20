@@ -22,58 +22,56 @@ import dev.trindadedev.tooltelegram.ui.components.appbars.TopBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LibrariesScreen(navController: NavController) {
-    val context = LocalContext.current
-    val uriHandler = LocalUriHandler.current
+  val context = LocalContext.current
+  val uriHandler = LocalUriHandler.current
 
-    val libs = remember { mutableStateOf<Libs?>(null) }
-    libs.value = Libs.Builder().withContext(context).build()
-    val libraries = libs.value!!.libraries
+  val libs = remember { mutableStateOf<Libs?>(null) }
+  libs.value = Libs.Builder().withContext(context).build()
+  val libraries = libs.value!!.libraries
 
-    val appBarState = rememberTopAppBarState()
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(appBarState)
+  val appBarState = rememberTopAppBarState()
+  val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(appBarState)
 
-    val defaultModifier = Modifier.fillMaxWidth()
+  val defaultModifier = Modifier.fillMaxWidth()
 
-    ApplicationScreen(
-        enableDefaultScrollBehavior = false,
-        columnContent = false,
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            TopBar(
-                barTitle = stringResource(id = R.string.libraries_label),
-                scrollBehavior = scrollBehavior,
-                onClickBackButton = { navController.popBackStack() },
-            )
-        },
-        content = {
-            Column(modifier = Modifier.fillMaxSize()) {
-                LibrariesContainer(
-                    modifier =
-                        Modifier.fillMaxSize()
-                            .windowInsetsPadding(
-                                WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
-                            ),
-                    colors =
-                        LibraryDefaults.libraryColors(
-                            backgroundColor = MaterialTheme.colorScheme.background,
-                            contentColor = MaterialTheme.colorScheme.onBackground,
-                            badgeBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            badgeContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                        ),
-                    padding =
-                        LibraryDefaults.libraryPadding(
-                            namePadding = PaddingValues(bottom = 4.dp),
-                            badgeContentPadding = PaddingValues(4.dp),
-                        ),
-                    onLibraryClick = { library ->
-                        library.website?.let {
-                            if (it.isNotEmpty()) {
-                                uriHandler.openUri(it)
-                            }
-                        }
-                    },
-                )
+  ApplicationScreen(
+    enableDefaultScrollBehavior = false,
+    columnContent = false,
+    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+    topBar = {
+      TopBar(
+        barTitle = stringResource(id = R.string.libraries_label),
+        scrollBehavior = scrollBehavior,
+        onClickBackButton = { navController.popBackStack() },
+      )
+    },
+    content = {
+      Column(modifier = Modifier.fillMaxSize()) {
+        LibrariesContainer(
+          modifier =
+            Modifier.fillMaxSize()
+              .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)),
+          colors =
+            LibraryDefaults.libraryColors(
+              backgroundColor = MaterialTheme.colorScheme.background,
+              contentColor = MaterialTheme.colorScheme.onBackground,
+              badgeBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+              badgeContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+            ),
+          padding =
+            LibraryDefaults.libraryPadding(
+              namePadding = PaddingValues(bottom = 4.dp),
+              badgeContentPadding = PaddingValues(4.dp),
+            ),
+          onLibraryClick = { library ->
+            library.website?.let {
+              if (it.isNotEmpty()) {
+                uriHandler.openUri(it)
+              }
             }
-        },
-    )
+          },
+        )
+      }
+    },
+  )
 }

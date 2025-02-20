@@ -13,33 +13,33 @@ import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun SimpleCard(
-    modifier: Modifier = Modifier,
-    cardTitle: String = "",
-    text: String = "",
-    addToggle: Boolean = false,
-    isToggleEnabled: Boolean = false,
-    cardColor: Color = MaterialTheme.colorScheme.inverseOnSurface,
-    justifyText: Boolean = false,
-    textScrollable: Boolean = false,
-    addPadding: Boolean = true,
-    content: @Composable () -> Unit = {},
+  modifier: Modifier = Modifier,
+  cardTitle: String = "",
+  text: String = "",
+  addToggle: Boolean = false,
+  isToggleEnabled: Boolean = false,
+  cardColor: Color = MaterialTheme.colorScheme.inverseOnSurface,
+  justifyText: Boolean = false,
+  textScrollable: Boolean = false,
+  addPadding: Boolean = true,
+  content: @Composable () -> Unit = {},
 ) {
-    CardBox(
-        modifier = modifier,
-        cardTitle = cardTitle,
-        addToggle = addToggle,
-        isToggleChecked = isToggleEnabled,
-        addPadding = addPadding,
-        cardColor = cardColor,
-    ) {
-        val scroll = rememberScrollState(0)
-        if (text.isNotEmpty()) {
-            Text(
-                text = text,
-                textAlign = if (justifyText) TextAlign.Justify else TextAlign.Start,
-                modifier = if (textScrollable) Modifier.verticalScroll(scroll) else Modifier,
-            )
-        }
-        content()
+  CardBox(
+    modifier = modifier,
+    cardTitle = cardTitle,
+    addToggle = addToggle,
+    isToggleChecked = isToggleEnabled,
+    addPadding = addPadding,
+    cardColor = cardColor,
+  ) {
+    val scroll = rememberScrollState(0)
+    if (text.isNotEmpty()) {
+      Text(
+        text = text,
+        textAlign = if (justifyText) TextAlign.Justify else TextAlign.Start,
+        modifier = if (textScrollable) Modifier.verticalScroll(scroll) else Modifier,
+      )
     }
+    content()
+  }
 }
