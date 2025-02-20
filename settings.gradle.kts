@@ -14,6 +14,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "compose-test"
+rootProject.name = "Tool-Telegram"
 
 include(":app")
