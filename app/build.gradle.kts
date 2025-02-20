@@ -70,7 +70,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
 
-    val aboutLibrariesVersion = "11.2.3"
+    val aboutLibrariesVersion = "11.6.3"
     val koinVersion = "4.0.2"
     
     implementation("androidx.appcompat:appcompat:1.7.0")
