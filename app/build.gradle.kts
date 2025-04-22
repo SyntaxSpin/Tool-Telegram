@@ -75,7 +75,7 @@ dependencies {
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
   implementation("androidx.core:core-ktx:1.16.0")
   implementation("androidx.datastore:datastore-preferences:1.1.4")
-  implementation("com.google.android.material:material:1.13.0-alpha12")
+  implementation("com.google.android.material:material:1.13.0-alpha13")
   implementation("androidx.core:core-splashscreen:1.0.1")
 
   implementation("com.squareup.okhttp3:okhttp:4.12.0")
